@@ -1,3 +1,230 @@
+.panel {
+  width: 100%;
+  max-width: 728px;
+  padding: 48px 54px 40px;
+  background-color: #252525;
+  border: 1px solid #414141;
+}
+
+.panel-header {
+  text-align: center;
+  color: #e2c365;
+}
+
+.panel-header h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+.panel-header p {
+  margin: 12px 0 0;
+  color: #e1cc8c;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.idea-form {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.idea-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 70px;
+  padding: 16px 20px;
+  border: 1px solid #dfc06b;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #f4f2ed;
+  font-size: 20px;
+}
+
+.idea-form input::placeholder {
+  color: #ddca91;
+  opacity: 1;
+}
+
+.add-button {
+  min-width: 92px;
+  padding: 16px;
+  border: 1px solid #f0d787;
+  background-color: #e3bf5b;
+  color: #15120a;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-button:hover {
+  background-color: #f0d37b;
+}
+
+.idea-list {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+}
+
+.idea-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 98px;
+  padding: 20px 12px 20px 18px;
+  border-bottom: 1px solid #424242;
+}
+
+.idea-item:hover {
+  background-color: #2a2a2a;
+}
+
+.idea-label {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+/* Mantém o input real, com aparência personalizada em CSS. */
+.idea-checkbox {
+  appearance: none;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  border: 2px solid #e0c579;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.idea-checkbox:checked {
+  background-color: #e3bf5b;
+}
+
+.idea-checkbox:checked::after {
+  content: '';
+  width: 9px;
+  height: 17px;
+  border: solid #15120a;
+  border-width: 0 4px 4px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.idea-text {
+  font-size: 21px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
 .completed {
+  color: #aaa18d;
   text-decoration: line-through;
+}
+
+.remove-button {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: #c27f6c;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.remove-button:hover {
+  color: #f4a28e;
+}
+
+.counter {
+  margin-top: 44px;
+  color: #e1c77b;
+  font-size: 19px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.error {
+  margin: 12px 0 0;
+  color: #ffb6a5;
+  line-height: 1.5;
+}
+
+.empty-message {
+  margin: 44px 0 0;
+  color: #bfb9aa;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* O foco visível permite navegar pelo painel com o teclado. */
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #f4df9b;
+  outline-offset: 4px;
+}
+
+/* Esconde o rótulo visualmente e o mantém para leitores de tela. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 24px 16px;
+  }
+
+  .panel {
+    padding: 32px 20px;
+  }
+
+  .panel-header h1 {
+    font-size: 28px;
+  }
+
+  .panel-header p,
+  .idea-form input {
+    font-size: 16px;
+  }
+
+  .idea-form {
+    flex-direction: column;
+  }
+
+  .idea-form input {
+    min-height: 56px;
+    padding: 14px;
+  }
+
+  .idea-item {
+    gap: 8px;
+    padding: 18px 0;
+  }
+
+  .idea-label {
+    gap: 12px;
+  }
+
+  .idea-text {
+    font-size: 17px;
+  }
+
+  .counter {
+    font-size: 16px;
+  }
 }
