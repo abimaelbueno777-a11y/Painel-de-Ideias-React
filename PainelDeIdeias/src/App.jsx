@@ -33,6 +33,26 @@ function App() {
     setNewIdea('')
     setError('')
   }
+
+  function toggleIdea(id) {
+    setIdeas(currentIdeas => currentIdeas.map(idea => {
+      if (idea.id === id) {
+        // Copia o objeto e inverte apenas a propriedade done.
+        return { ...idea, done: !idea.done }
+      }
+
+      return idea
+    }))
+  }
+
+  function removeIdea(id) {
+    setIdeas(currentIdeas => currentIdeas.filter(idea => idea.id !== id))
+  }
+
+  // Os contadores são calculados a partir da lista, sem outro useState.
+  const totalIdeas = ideas.length
+  const completedIdeas = ideas.filter(idea => idea.done).length
+
   return (
     <main className="panel">
       <header className="panel-header">
@@ -64,11 +84,36 @@ function App() {
       <ul className="idea-list" aria-label="Ideias no painel">
         {ideas.map(idea => (
           <li className="idea-item" key={idea.id}>
-            <span className="idea-text">{idea.text}</span>
+            <label className="idea-label">
+              <input
+                className="idea-checkbox"
+                type="checkbox"
+                checked={idea.done}
+                onChange={() => toggleIdea(idea.id)}
+              />
+              <span className={idea.done ? 'idea-text completed' : 'idea-text'}>
+                {idea.text}
+              </span>
+            </label>
+
+            <button
+              className="remove-button"
+              type="button"
+              onClick={() => removeIdea(idea.id)}
+              aria-label={`Remover ideia ${idea.text}`}
+              title="Remover ideia"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
           </li>
         ))}
-      </ul>    
-      </main>
+      </ul>
+
+      <footer className="counter" aria-live="polite">
+        {`${totalIdeas} ${totalIdeas === 1 ? 'IDEIA' : 'IDEIAS'} NO PAINEL · `}
+        {`${completedIdeas} ${completedIdeas === 1 ? 'CONCLUÍDA' : 'CONCLUÍDAS'}`}
+      </footer>
+    </main>
   )
 }
 
